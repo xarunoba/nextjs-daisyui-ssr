@@ -15,8 +15,11 @@ export default function Home() {
             <Image
               src="/daisyui-logotype.svg"
               alt="daisyUI Logo"
-              width={256}
-              height={256}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-64 h-auto"
+              priority
             />
             <p className="text-center text-4xl font-black text-black">SSR</p>
           </Link>
@@ -24,10 +27,24 @@ export default function Home() {
         <ThemeProvider />
         <div className="select-none flex gap-4 justify-between">
           <Link href="https://nextjs.org" target="_blank" rel="nofollow">
-            <Image src="/next.svg" alt="Next.js Logo" width={64} height={64} />
+            <Image
+              src="/next.svg"
+              alt="Next.js Logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-16 h-auto"
+            />
           </Link>
           <Link href="https://vercel.com/" target="_blank" rel="nofollow">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={64} height={64} />
+            <Image
+              src="/vercel.svg"
+              alt="Vercel Logo"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-16 h-auto"
+            />
           </Link>
         </div>
       </div>
