@@ -24,7 +24,9 @@ export default function Home() {
             <p className="text-center text-4xl font-black text-black">SSR</p>
           </Link>
         </div>
+
         <ThemeProvider />
+
         <div className="select-none flex gap-4 justify-between">
           <Link href="https://nextjs.org" target="_blank" rel="nofollow">
             <Image
