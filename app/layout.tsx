@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { Inter } from 'next/font/google'
-import Themes from '@/utils/themes'
+import Tailwind from '@/tailwind.config'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -15,10 +15,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const theme = Tailwind.daisyui.themes
   // Get theme based on the cookie "theme".
   const themeCookie = cookies().get('theme')
   // If the cookie "theme" does not exist, set theme to the first index of Themes.
-  const currentTheme = themeCookie ? themeCookie.value : Themes[0]
+  const currentTheme = themeCookie ? themeCookie.value : theme[0]
 
   return (
     <html lang="en" data-theme={currentTheme}>
