@@ -1,6 +1,6 @@
-# Next.js 13 + daisyUI + SSR
+# Next.js 14 + daisyUI + SSR
 
-This is an example project that integrates daisyUI with the new Next.js 13 App Router. This example uses cookies to load the themes server-side.
+This is an example project that integrates daisyUI with the new Next.js 14 App Router. This example uses cookies to load the themes server-side.
 
 ## Getting Started
 
