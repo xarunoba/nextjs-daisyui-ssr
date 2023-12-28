@@ -2,6 +2,13 @@
 
 This is an example project that integrates daisyUI with the new Next.js 14 App Router. This example uses cookies to load the themes server-side.
 
+## Methods
+
+Use whichever suits your taste. 
+
+1. Using Server Actions. (NEW)
+2. Using Javascript to set cookies client-side. (OLD)
+
 ## Getting Started
 
 First, install the dependencies:
