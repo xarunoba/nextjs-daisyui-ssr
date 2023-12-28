@@ -1,4 +1,4 @@
-import ThemeSwitcher from '@/components/theme-switcher'
+import ThemeProvider from '@/components/old/theme-provider'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -24,7 +24,9 @@ export default function Home() {
             <p className="text-center text-4xl font-black text-black">SSR</p>
           </Link>
         </div>
-        <ThemeSwitcher />
+
+        <ThemeProvider />
+
         <div className="select-none flex gap-4 justify-between">
           <Link href="https://nextjs.org" target="_blank" rel="nofollow">
             <Image
@@ -48,8 +50,8 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <Link href="/old" className="link link-accent text-sm">
-        Click here for the old implementation
+      <Link href="/" className="link link-accent text-sm">
+        Click here for the new implementation
       </Link>
     </main>
   )

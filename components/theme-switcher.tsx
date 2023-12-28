@@ -1,47 +1,40 @@
-'use client'
+import { cookies } from 'next/headers'
+import Tailwind from '@/tailwind.config'
 
-import { useState, useEffect } from 'react'
+export default async function ThemeSwitcher() {
+  const theme = Tailwind.daisyui.themes
+  const themeCookie = cookies().get('theme')
+  const currentTheme = themeCookie ? themeCookie.value : theme[0]
 
-export default function ThemeSwitcher({
-  theme,
-  list,
-}: {
-  theme: string
-  list: string[]
-}) {
-  const [currentTheme, setTheme] = useState(theme)
-  const [isLoading, setLoading] = useState(true)
+  // Using server actions to toggle theme
+  async function toggleTheme() {
+    'use server'
 
-  useEffect(() => {
-    // Set the cookie "theme" with an expiry date of 400 days (Maximum expiry date for Chromium browsers).
-    document.cookie =
-      `theme=${currentTheme};expires=` +
-      new Date(new Date().getTime() + 400 * 24 * 60 * 60 * 1000).toUTCString()
-    // Set the data-theme attribute for <html>
-    document.documentElement.setAttribute('data-theme', currentTheme)
-    setLoading(false)
-  }, [currentTheme])
+    const theme = Tailwind.daisyui.themes
+    const themeCookie = cookies().get('theme')
+    const currentTheme = themeCookie ? themeCookie.value : theme[0]
 
-  function toggleTheme() {
-    setLoading(true)
-    const currentIndex = list.indexOf(currentTheme)
-    if (currentIndex === list.length - 1) return setTheme(list[0])
-    else if (currentIndex >= 0 && currentIndex < list.length)
-      return setTheme(list[currentIndex + 1])
-    else return setTheme(list[0])
+    const currentIndex = theme.indexOf(currentTheme)
+    if (currentIndex === theme.length - 1) {
+      cookies().set('theme', theme[0], {
+        expires: new Date(new Date().getTime() + 400 * 24 * 60 * 60 * 1000),
+      })
+    } else if (currentIndex >= 0 && currentIndex < theme.length) {
+      cookies().set('theme', theme[currentIndex + 1], {
+        expires: new Date(new Date().getTime() + 400 * 24 * 60 * 60 * 1000),
+      })
+    } else {
+      cookies().set('theme', theme[0], {
+        expires: new Date(new Date().getTime() + 400 * 24 * 60 * 60 * 1000),
+      })
+    }
   }
 
   return (
-    <button
-      onClick={toggleTheme}
-      className={'btn btn-primary'}
-      disabled={isLoading}
-    >
-      {isLoading ? (
-        <span className="loading loading-spinner text-primary" />
-      ) : (
-        currentTheme
-      )}
-    </button>
+    <form action={toggleTheme} className="block">
+      <button type="submit" className={'btn btn-primary w-full'}>
+        {currentTheme}
+      </button>
+    </form>
   )
 }
